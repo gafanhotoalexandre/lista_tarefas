@@ -20,7 +20,7 @@ class Conexao
             return $connection;
 
         } catch (PDOException $e) {
-            echo '<p>'. $e->getMessage() .'</p>';
+            echo '<p style="color: red; font-size: 18px;">'. $e->getMessage() .'</p>';
         }
     }
 }
