@@ -12,7 +12,7 @@ class Conexao
         try {
 
             $connection = new PDO(
-                "mysql:host=$this->host,dbname=$this->dbName",
+                "mysql:host=$this->host;dbname=$this->dbName",
                 "$this->user",
                 "$this->pass",
             );
