@@ -20,11 +20,15 @@
 			</div>
 		</nav>
 
-		<?php if(isset($_GET['inclusao']) && $_GET['inclusao'] == 1): ?>
+		<?php if(isset($_GET['inclusao']) && $_GET['inclusao'] == 1) { ?>
 			<div class="bg-success pt-2 text-white d-flex justify-content-center">
 				<h5>Tarefa Inserida com Sucesso!</h5>
 			</div>
-		<?php endif ?>
+		<?php } else if(isset($_GET['inclusao']) && $_GET['inclusao'] == 0) { ?>
+			<div class="bg-warning pt-2 text-white d-flex justify-content-center">
+				<h5>Preencha o Campo!</h5>
+			</div>
+		<?php } ?>
 
 		<div class="container app">
 			<div class="row">

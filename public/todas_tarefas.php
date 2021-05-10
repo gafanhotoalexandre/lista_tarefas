@@ -19,7 +19,7 @@
 
 				// criar form de edição
 				let form = document.createElement('form')
-				form.action = '#'
+				form.action = 'tarefa_controller.php?acao=atualizar'
 				form.method = 'POST'
 				form.className = 'row'
 				// criar input para entrada do texto
@@ -53,6 +53,18 @@
 				task.innerHTML = ''
 				// incluir form de edição na página
 				task.insertBefore(form, task[0])
+			}
+
+			function remover(id)
+			{
+				if (window.confirm('Tem certeza que deseja apagar o registro?')){
+					location.href = 'todas_tarefas.php?acao=remover&id=' + id
+				}
+			}
+
+			function marcarRealizada(id)
+			{
+				location.href = 'todas_tarefas.php?acao=marcarRealizada&id=' + id
 			}
 		</script>
 	</head>
@@ -90,10 +102,14 @@
 											<?= $task->tarefa ?> (<?= $task->status ?>)
 										</div>
 										<div class="col-sm-3 mt-2 d-flex justify-content-between">
-											<i class="fas fa-trash-alt fa-lg text-danger"></i>
-											<i class="fas fa-edit fa-lg text-info"
-											   onclick="editar(<?= $task->id ?>, '<?= $task->tarefa ?>')"></i>
-											<i class="fas fa-check-square fa-lg text-success"></i>
+											<i class="fas fa-trash-alt fa-lg text-danger"
+											onclick="remover(<?= $task->id ?>)"></i>
+											<?php if ($task->status == 'pendente'): ?>
+												<i class="fas fa-edit fa-lg text-info"
+												onclick="editar(<?= $task->id ?>, '<?= $task->tarefa ?>')"></i>
+												<i class="fas fa-check-square fa-lg text-success"
+													onclick="marcarRealizada(<?= $task->id ?>)"></i>
+											<?php endif ?>
 										</div>
 									</div>
 								<?php endforeach ?>
