@@ -4,18 +4,28 @@ require_once '../lista_tarefas_private/Tarefa.php';
 require_once '../lista_tarefas_private/TarefaService.php';
 require_once '../lista_tarefas_private/Conexao.php';
 
-echo '<pre>';
-    print_r($_POST);
-echo '</pre>';
+$acao = $_GET['acao'] ?? $acao;
 
-$task = new Tarefa();
-$task->__set('tarefa', $_POST['task']);
+if ($acao == 'inserir') {
 
-$connection = new Conexao();
+    $task = new Tarefa();
+    $task->__set('tarefa', $_POST['task']);
 
-$tarefaService = new TarefaService($connection, $task);
-$tarefaService->insert();
+    $connection = new Conexao();
 
-echo '<pre>';
-    print_r($tarefaService);
-echo '</pre>';
+    $tarefaService = new TarefaService($connection, $task);
+    $tarefaService->insert();
+
+    header('Location: nova_tarefa.php?inclusao=1');
+
+} else if ($acao == 'recuperar') {
+    
+    $task = new Tarefa();
+    $connection = new Conexao();
+
+    // $task->__set('tarefa', $_POST['task']);
+
+    $tarefaService = new TarefaService($connection, $task);
+    $tasks = $tarefaService->recover();
+   
+}

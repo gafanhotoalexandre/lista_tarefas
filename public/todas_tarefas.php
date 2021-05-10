@@ -1,3 +1,8 @@
+<?php
+	$acao = 'recuperar';
+	require_once 'tarefa_controller.php';
+?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -36,24 +41,17 @@
 								<h4>Todas tarefas</h4>
 								<hr />
 
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Lavar o carro (status)</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
+								<?php foreach ($tasks as $key => $task): ?>
+									<div class="row mb-3 d-flex align-items-center tarefa">
+										<div class="col-sm-9"><?= $task->tarefa ?> (<?= $task->status ?>)</div>
+										<div class="col-sm-3 mt-2 d-flex justify-content-between">
+											<i class="fas fa-trash-alt fa-lg text-danger"></i>
+											<i class="fas fa-edit fa-lg text-info"></i>
+											<i class="fas fa-check-square fa-lg text-success"></i>
+										</div>
 									</div>
-								</div>
+								<?php endforeach ?>
 
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Passear com o cachorro (status)</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
-									</div>
-								</div>
-								
 							</div>
 						</div>
 					</div>
